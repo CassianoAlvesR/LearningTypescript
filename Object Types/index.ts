@@ -113,9 +113,7 @@ console.log(arnold);
 
 //ReadOnly Array
 let myArray: ReadonlyArray<string> = ["Maça", "Laranja", "Banana"];
-
 //myArray[3] = 'Mamão'
-
 console.log(myArray);
 
 myArray.forEach((item) => {
