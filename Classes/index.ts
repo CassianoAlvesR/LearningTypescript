@@ -383,4 +383,4 @@ const doguinho: Dog = new Cat(); //uso de tipo por classe
 
 console.log(doguinho);
 
-//Encerramento sessão de classes - enviar git
+//Encerramento seção de classes - enviar git

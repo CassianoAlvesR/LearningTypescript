@@ -1,0 +1,1 @@
+export const x = 'Variável que foi importada'
