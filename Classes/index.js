@@ -115,7 +115,7 @@ class blogPost {
         return `O titulo do post é: ${this.title}`;
     }
 }
-const newPost = new blogPost('Como ser um bom programador?');
+const newPost = new blogPost("Como ser um bom programador?");
 console.log(newPost.itemTitle());
 class TestingInterface {
     constructor(title) {
@@ -128,13 +128,149 @@ class TestingInterface {
 //Override de Métodos
 class Base {
     someMethod() {
-        console.log('algo');
+        console.log("algo");
     }
 }
 class Nova extends Base {
     someMethod() {
-        console.log('testando outra coisa');
+        console.log("testando outra coisa");
     }
 }
 const myObject = new Nova();
 myObject.someMethod();
+//Visibilidade
+//Public
+class C {
+    constructor() {
+        this.x = 10;
+    }
+}
+class D extends C {
+    constructor() {
+        super(...arguments);
+        this.x = 2;
+    }
+}
+const cInstance = new C();
+console.log(cInstance.x);
+const dInstance = new D();
+console.log(dInstance.x);
+//Protected
+class E {
+    constructor() {
+        this.x = 10;
+    }
+    protectedMethod() {
+        console.log("este metodo é protegido");
+    }
+}
+class F extends E {
+    showX() {
+        console.log(`Valor de X: ${this.x}`);
+    }
+    showProtectedMethod() {
+        this.protectedMethod();
+    }
+}
+const fInstance = new F();
+fInstance.showX();
+fInstance.showProtectedMethod();
+//Private
+class PrivateClass {
+    constructor() {
+        this.name = "Private"; //somente acessado pela propria classe
+    }
+    showName() {
+        return this.name;
+    }
+    privateMethod() {
+        console.log("metodo privado");
+    }
+    showPrivateMethod() {
+        this.privateMethod();
+    }
+}
+const pObject = new PrivateClass();
+console.log(pObject.showName());
+pObject.showPrivateMethod();
+//Static Members
+class StaticMembers {
+    static staticMethod() {
+        console.log("este é um método estático");
+    }
+}
+StaticMembers.prop = "Teste static";
+console.log(StaticMembers.prop);
+StaticMembers.staticMethod();
+//Generic class
+class Item {
+    constructor(first, second) {
+        this.first = first;
+        this.second = second;
+    }
+    get showFirst() {
+        return `O first é ${this.first}`;
+    }
+    get showSecond() {
+        return `O second é ${this.second}`;
+    }
+}
+const newItem = new Item("caixa", "surpresa");
+console.log(newItem);
+console.log(newItem.showFirst);
+console.log(newItem.showSecond);
+const newItem2 = new Item(2, true);
+console.log(newItem2.showFirst);
+console.log(newItem2.showSecond);
+//Parameters Properties
+class ParameterProperties {
+    constructor(name, qty, price) {
+        this.name = name;
+        this.qty = qty;
+        this.price = price;
+        this.name = name;
+        this.qty = qty;
+        this.price = price;
+    }
+    get showQty() {
+        return `Quantidade: ${this.qty}`;
+    }
+    get showPrice() {
+        return `Preço: ${this.price}`;
+    }
+}
+const newShirt = new ParameterProperties("camisa", 5, 19.99);
+console.log(newShirt.name);
+console.log(newShirt.showPrice);
+console.log(newShirt.showQty);
+//Class Expressions
+const myClass = class {
+    constructor(name) {
+        this.name = name;
+    }
+};
+const pessoa = new myClass("joao");
+console.log(pessoa.name);
+//Abstract Class
+class AbstractClass {
+}
+//const newObj = new AbstractClass()
+class AbstractExemple extends AbstractClass {
+    constructor(name) {
+        super();
+        this.name = name;
+    }
+    showName() {
+        console.log(`O nome é: ${this.name}`);
+    }
+}
+const newAbstractObject = new AbstractExemple("Fulaninho");
+newAbstractObject.showName();
+//Relações entre classes
+class Dog {
+}
+class Cat {
+}
+const doguinho = new Cat(); //uso de tipo por classe
+console.log(doguinho);
+//Encerramento sessão de classes - enviar git
