@@ -1,4 +1,4 @@
-import React, {createContext} from 'react';
+import React, { createContext } from 'react';
 
 //Importação de Componentes
 import FirstComponent from './components/FirstComponent';
@@ -7,6 +7,8 @@ import SecondComponent from './components/SecondComponent';
 import Destructuring, { Category } from './components/Destructuring';
 //Use State
 import State from './components/State';
+//Utilizando Contexto
+import Context from './components/Context'
 
 //Type
 type textOrNull = string | null
@@ -14,10 +16,12 @@ type fixed = 'Isso' | 'Aquilo'
 
 //Context Interface
 interface IAppContext {
-  language: string,
-  framework: string,
-  projects: number,
+  language: string;
+  framework: string;
+  projects: number;
 }
+
+export const AppContext = createContext<IAppContext | null>(null);
 
 function App() {
 
@@ -46,36 +50,37 @@ function App() {
     projects: 1,
   };
 
-  const AppContext = createContext
-
   return (
-    <div className="App">
-      <h1>TypeScript com React</h1>
-      <h2>Nome: {name}</h2>
-      <p>Idade: {age}</p>
-      {isWorking && (<div><p>Está trabalhando.</p></div>)}
-      <h3>{userGreeting(name)}</h3>
-      <FirstComponent />
-      <SecondComponent name='Fulano' />
-      <Destructuring
-        title="Primeiro Post"
-        content="Algum conteudo"
-        commentsQty={10}
-        tags={["ts", "js"]}
-        category={Category.TS}
-      />
-      <Destructuring
-        title="Segundo Post"
-        content="Outro conteudo"
-        commentsQty={10}
-        tags={["PYTHON", "PY"]}
-        category={Category.PY}
-      />
-      <State />
-      {myText && <p>Tem o texto "{myText}" na variável</p>}
-      {mySecondText && <p>Tem o texto "{mySecondText}" na variável</p>}
-      {testandoFixed && <p>{testandoFixed}</p>}
-    </div>
+    <AppContext.Provider value={contextValue}>
+      <div className="App">
+        <h1>TypeScript com React</h1>
+        <h2>Nome: {name}</h2>
+        <p>Idade: {age}</p>
+        {isWorking && (<div><p>Está trabalhando.</p></div>)}
+        <h3>{userGreeting(name)}</h3>
+        <FirstComponent />
+        <SecondComponent name='Fulano' />
+        <Destructuring
+          title="Primeiro Post"
+          content="Algum conteudo"
+          commentsQty={10}
+          tags={["ts", "js"]}
+          category={Category.TS}
+        />
+        <Destructuring
+          title="Segundo Post"
+          content="Outro conteudo"
+          commentsQty={10}
+          tags={["PYTHON", "PY"]}
+          category={Category.PY}
+        />
+        <State />
+        {myText && <p>Tem o texto "{myText}" na variável</p>}
+        {mySecondText && <p>Tem o texto "{mySecondText}" na variável</p>}
+        {testandoFixed && <p>{testandoFixed}</p>}
+        <Context />
+      </div>
+    </AppContext.Provider>
   );
 }
 
